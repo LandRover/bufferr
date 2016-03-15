@@ -1,0 +1,52 @@
+{
+  "name": "bufferr",
+  "version": "0.0.1",
+  "description": "Bufferr",
+  "main": "src/bufferr.js",
+  "devDependencies": {
+    "babel-eslint": "^5.0.0-beta8",
+    "gulp": "^3.9.0",
+    "gulp-eslint": "^2.0.0",
+    "gulp-jscpd": "^0.0.6",
+    "gulp-notify": "^2.2.0",
+    "gulp-util": "^3.0.7",
+    "gulp-watch": "^4.3.5",
+    "blanket": "^1.2.1",
+    "eslint": "^2.1.0",
+    "mocha": "^2.4.5",
+    "chai": "^3.5.0",
+    "sinon": "^1.17.3",
+    "sinon-chai": "^2.8.0",
+    "phantomjs2": "^2.0.2",
+    "require-dir": "^0.3.0",
+    "run-sequence": "^1.1.4",
+    "webpack": "^1.12.12",
+    "webpack-dev-server": "^1.14.1"
+  },
+  "engines": {
+    "node": "5.7.1"
+  },
+  "config": {
+    "blanket": {
+      "pattern": [
+        "src"
+      ],
+      "data-cover-never": "node_modules"
+    }
+  },
+  "scripts": {
+    "test": "mocha test/*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/LandRover/bufferr.git"
+  },
+  "bugs": {
+    "url": "https://github.com/LandRover/bufferr/issues"
+  },
+  "keywords": [
+    "Bufferr"
+  ],
+  "author": "Oleg Glozman",
+  "license": "MIT"
+}
