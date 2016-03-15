@@ -18,7 +18,7 @@ describe('Encoder testing types', () => {
 
 
     it('true is true!', () => {
-        expect(moshe).to.be.undefined;
+        expect(undefined).to.be.undefined;
     });
 
 });
