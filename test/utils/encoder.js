@@ -17,8 +17,8 @@ const TEXT = {
     STRING1: '8.000.0',
     STRING2: '479c0d5c25808c8bb37bc3972e4d1624',
 
-    BOOL_0: false,
-    BOOL_1: true,
+    BOOL0: false,
+    BOOL1: true,
 
     BYTE0: 0,
     BYTE1: 1,
@@ -86,7 +86,7 @@ describe('LONGs', () => {
 
 
 describe('BOOLEANs', () => {
-    [TEXT.BOOL_0, TEXT.BOOL_1].forEach(INPUT => {
+    [TEXT.BOOL0, TEXT.BOOL1].forEach(INPUT => {
         it(INPUT + ' Boolean Encoding', () => {
             let str = Encoder.boolean(INPUT), // encode input
                 len = Buffer.byteLength(INPUT); // byte length of the input
@@ -95,6 +95,21 @@ describe('BOOLEANs', () => {
 
             expect(INPUT.length).to.equal(encodedBoolean.length); // encoded and decoded string length are eqaul.
             expect(INPUT).to.equal(Boolean(Number(encodedBoolean.toString()))); // verify the decoded eq to the original input.
+        });
+    });
+});
+
+
+describe('BYTEs', () => {
+    [TEXT.BYTE0, TEXT.BYTE1, TEXT.BYTE5, TEXT.BYTE9].forEach(INPUT => {
+        it(INPUT + ' Bytes Encoding', () => {
+            let str = Encoder.byte(INPUT), // encode input
+                len = Buffer.byteLength(INPUT); // byte length of the input
+
+            let encodedByte = str.readUIntBE(0, DATA_TYPES.BYTE_LEN);
+
+            expect(INPUT.length).to.equal(encodedByte.length); // encoded and decoded string length are eqaul.
+            expect(INPUT).to.equal(Number(encodedByte.toString())); // verify the decoded eq to the original input.
         });
     });
 });
