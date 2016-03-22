@@ -41,21 +41,22 @@ describe('Strings', () => {
     });
 
 
-    it('Strings Encoding', () => {
-        let INPUT = TEXT.STRING0.toString();
 
-        let str = Encoder.string(INPUT), // encode input
-            len = Buffer.byteLength(INPUT); // byte length of the input
+    [TEXT.STRING0, TEXT.STRING1, TEXT.STRING2].forEach(INPUT => {
+        it(INPUT + ' String Encoding', () => {
+            INPUT = INPUT.toString();
 
-        let encodedLen = str.readUIntBE(0, DATA_TYPES.INT32_LEN), // reads length
-            encodedString = str.slice(DATA_TYPES.INT32_LEN, DATA_TYPES.INT32_LEN + encodedLen); // offset, jump above the str len and get the buffer off that.
+            let str = Encoder.string(INPUT), // encode input
+                len = Buffer.byteLength(INPUT); // byte length of the input
 
-        expect(INPUT.length + DATA_TYPES.INT32_LEN).to.equal(str.length); // verifies the buffer size created is correct, 4 bytes for the len and the actual length of the string.
-        expect(len).to.equal(encodedLen); // encoded and decoded string length are eqaul.
-        expect('000000053132333435').to.equal(str.toString('hex')); // hex value is correct for the payload.
-        expect(INPUT).to.equal(encodedString.toString()); // verify the decoded eq to the original input.
+            let encodedLen = str.readUIntBE(0, DATA_TYPES.INT32_LEN), // reads length
+                encodedString = str.slice(DATA_TYPES.INT32_LEN, DATA_TYPES.INT32_LEN + encodedLen); // offset, jump above the str len and get the buffer off that.
+
+            expect(INPUT.length + DATA_TYPES.INT32_LEN).to.equal(str.length); // verifies the buffer size created is correct, 4 bytes for the len and the actual length of the string.
+            expect(len).to.equal(encodedLen); // encoded and decoded string length are eqaul.
+            expect(INPUT).to.equal(encodedString.toString()); // verify the decoded eq to the original input.
+        });
     });
-
 
 
 });
