@@ -37,11 +37,6 @@ const TEXT = {
 
 
 describe('Strings', () => {
-    beforeEach(() => {
-    });
-
-
-
     [TEXT.STRING0, TEXT.STRING1, TEXT.STRING2].forEach(INPUT => {
         it(INPUT + ' String Encoding', () => {
             INPUT = INPUT.toString();
@@ -57,6 +52,19 @@ describe('Strings', () => {
             expect(INPUT).to.equal(encodedString.toString()); // verify the decoded eq to the original input.
         });
     });
+});
 
 
+describe('INTs', () => {
+    [TEXT.INT1, TEXT.INT2, TEXT.INT3].forEach(INPUT => {
+        it(INPUT + ' Numbers Encoding', () => {
+            let str = Encoder.int(INPUT), // encode input
+                len = Buffer.byteLength(INPUT); // byte length of the input
+
+            let encodedInt = str.readUIntBE(0, DATA_TYPES.INT32_LEN);
+
+            expect(INPUT.length).to.equal(encodedInt.length); // encoded and decoded string length are eqaul.
+            expect(INPUT).to.equal(Number(encodedInt.toString())); // verify the decoded eq to the original input.
+        });
+    });
 });
