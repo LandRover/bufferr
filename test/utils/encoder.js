@@ -22,7 +22,7 @@ const TEXT = {
     BYTE0: 0,
     BYTE1: 1,
     BYTE5: 5,
-    BYTE9: 9
+    BYTE9: 9,
     
     
     INT1: 12345678,
