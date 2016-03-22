@@ -19,18 +19,19 @@ class Encoder {
     string(str) {
         let payloadLength = Buffer.byteLength(str),
             buffer = this._buffer(payloadLength, DATA_TYPES.INT32_LEN + payloadLength, DATA_TYPES.INT32_LEN);
-        
-        buffer.write(str, DATA_TYPES.INT32_LEN, payloadLength);
-        
+
+        buffer.write(str.toString(), DATA_TYPES.INT32_LEN, payloadLength);
+
         return buffer;
     }
 
 
     boolean(flag) {
         let state = 0;
-        
-        if (true === flag)
+
+        if (true === flag) {
             state = 1;
+        }
 
         return this.byte(state);
     }
@@ -49,11 +50,11 @@ class Encoder {
     _QWORD(number) {
         return this._buffer(number, DATA_TYPES.INT64_LEN);
     }
-    
+
 
     _buffer(number, len, position) {
-        position = position || len; // default position is at the end of the buffer, unless is set for something else.
-        
+        position = position || len; // default position is at the end of the buffer, unless is set for something else manually.
+
         let buffer = new Buffer(len);
         buffer.writeUIntBE(number.toString(), 0, position);
 
