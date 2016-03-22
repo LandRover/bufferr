@@ -68,3 +68,18 @@ describe('INTs', () => {
         });
     });
 });
+
+
+describe('LONGs', () => {
+    [TEXT.LONG1, TEXT.LONG2, TEXT.LONG3, TEXT.LONG4].forEach(INPUT => {
+        it(INPUT + ' Long Numbers Encoding', () => {
+            let str = Encoder.long(INPUT), // encode input
+                len = Buffer.byteLength(INPUT); // byte length of the input
+
+            let encodedLong = str.readUIntBE(0, DATA_TYPES.INT64_LEN);
+
+            expect(INPUT.length).to.equal(encodedLong.length); // encoded and decoded string length are eqaul.
+            expect(INPUT).to.equal(Number(encodedLong.toString())); // verify the decoded eq to the original input.
+        });
+    });
+});
